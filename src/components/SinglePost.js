@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import sanityClient from "../client.js";
 import imageUrlBuilder from "@sanity/image-url";
 import BlockContent from "@sanity/block-content-to-react";
+
+import video from "../videos/video-2.mp4";
 const builder = imageUrlBuilder(sanityClient);
 function urlFor(source) {
   return builder.image(source);
@@ -36,7 +38,17 @@ export default function SinglePost() {
   if (!singlePost) return <div>Loading...</div>;
 
   return (
-    <main className="bg-gray min-h-screen p-12">
+    <main className="min-h-screen p-12 ">
+      <video
+        src={video}
+        alt="doggy"
+        autoPlay
+        loop
+        muted
+        className="absolute w-full"
+        id="myVideo"
+      />
+
       <article className="container shadow-lg mx-auto bg-green-100 rounded-lg">
         <header className="relative">
           <div className="absolute h-full w-full flex items-center justify-center p-8">
@@ -59,11 +71,11 @@ export default function SinglePost() {
           <img
             src={singlePost.mainImage.asset.url}
             alt={singlePost.title}
-            className="w-full object-cover rounded-t"
+            className=" cursive w-full object-cover rounded-t"
             style={{ height: "400px" }}
           />
         </header>
-        <div className="px-16 lg:px-48 py-12 lg:py-20 prose lg:prose-xl max-w-full">
+        <div className="cursive px-16 bg-gray-200 text-white lg:px-48 py-12 lg:py-20 prose lg:prose-xl max-w-full">
           <BlockContent
             blocks={singlePost.body}
             projectId="pclgieqh"
